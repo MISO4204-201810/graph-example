@@ -1,0 +1,1 @@
+web: java -jar target/graph-example-1.0.jar
