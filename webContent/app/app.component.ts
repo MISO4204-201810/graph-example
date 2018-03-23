@@ -1,35 +1,40 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import APP_CONFIG from './app.config';
-import { Node, Link } from './d3';
+import {Node, Link} from './d3';
+import {RestApiGraphService} from "./rest-api/rest-api-graph.service";
+import {Graph} from "./d3/models/graph";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css']
 })
 
-export class AppComponent {
-  nodes: Node[] = [];
-  links: Link[] = [];
+export class AppComponent implements OnInit {
+    nodes: Node[] = [];
+    links: Link[] = [];
+    graph: Graph;
+    loading = true;
 
-  constructor() {
-    const N = APP_CONFIG.N,
-          getIndex = number => number - 1;
-
-    /** constructing the nodes array */
-    for (let i = 1; i <= N; i++) {
-      this.nodes.push(new Node(i));
+    constructor(private _restApiGraph: RestApiGraphService) {
+        console.log("nodes ", JSON.stringify(this.nodes));
+        console.log("links ", JSON.stringify(this.links));
     }
 
-    for (let i = 1; i <= N; i++) {
-      for (let m = 2; i * m <= N; m++) {
-        /** increasing connections toll on connecting nodes */
-        this.nodes[getIndex(i)].linkCount++;
-        this.nodes[getIndex(i * m)].linkCount++;
-
-        /** connecting the nodes before starting the simulation */
-        this.links.push(new Link(i, i * m));
-      }
+    public ngOnInit() {
+        this._restApiGraph.loadGraph().subscribe(
+            (graph: Graph) => {
+                console.log(graph);
+                this.loading = false;
+                graph.nodes.forEach((nde: Node) => {
+                    let node = new Node(nde.id);
+                    node.linkCount = nde.linkCount;
+                    this.nodes.push(node);
+                });
+                graph.links.forEach((link: Link) => {
+                    this.links.push(link);
+                });
+            }
+        );
     }
-  }
 }

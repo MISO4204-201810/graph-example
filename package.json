@@ -6,7 +6,7 @@
   "scripts": {
     "ng": "ng",
     "build:dev": "ng build --dev",
-    "start": "ng serve",
+    "start": "ng serve --port 4200 --proxy-config proxy.config.js",
     "lint": "ng lint"
   },
   "private": true,
