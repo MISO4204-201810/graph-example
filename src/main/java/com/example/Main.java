@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ import java.util.ArrayList;
 @SpringBootApplication
 public class Main {
 
+    Graph graph = new Graph();
 
     public static void main(String[] args) throws Exception {
         SpringApplication.run(Main.class, args);
@@ -25,24 +27,35 @@ public class Main {
         return "index";
     }
 
-
     @RequestMapping("/api/graph")
     @ResponseBody
     public Graph getGraph() {
-        Graph graph = new Graph();
-        Node cinco = new Node(5);
-        cinco.setLinkCount(5);
-        graph.getNodes().add(new Node(1));
-        graph.getNodes().add(new Node(2));
-        graph.getNodes().add(new Node(3));
-        graph.getNodes().add(new Node(4));
-        graph.getNodes().add(cinco);
-
-        graph.getLinks().add(new Link(1, 5));
-        graph.getLinks().add(new Link(1, 4));
-        graph.getLinks().add(new Link(1, 2));
-        graph.getLinks().add(new Link(3, 5));
         return graph;
     }
 
+    @RequestMapping(value = "/api/graph/node", method = RequestMethod.PUT)
+    @ResponseBody
+    public Node addNode() {
+        int number = graph.getNodes().size() + 1;
+        Node node = new Node(number);
+        graph.getNodes().add(node);
+        return node;
+    }
+
+
+    @RequestMapping(value = "/api/graph/link", method = RequestMethod.PUT)
+    @ResponseBody
+    public Link addLink() {
+        int number = graph.getNodes().size() + 1;
+        Link link = new Link(1, 9);
+        graph.getLinks().add(link);
+        return link;
+    }
+
+    @RequestMapping(value = "/api/graph", method = RequestMethod.DELETE)
+    @ResponseBody
+    public Graph deleteGraph() {
+        graph = new Graph();
+        return graph;
+    }
 }

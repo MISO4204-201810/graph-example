@@ -8,3 +8,9 @@
 <div *ngIf="!loading">
     <graph [nodes]="nodes" [links]="links"></graph>
 </div>
+
+<div class="graph-editor">
+    <button (click)="addNode()">Add node</button>
+    <button (click)="addLink()">Add link</button>
+    <button (click)="reset()">Reset</button>
+</div>
