@@ -27,6 +27,11 @@ public class Main {
         return "index";
     }
 
+    @RequestMapping("/other")
+    String other() {
+        return "other";
+    }
+
     @RequestMapping("/api/graph")
     @ResponseBody
     public Graph getGraph() {
