@@ -1,6 +1,8 @@
 package com.example.models;
 
-public class Node {
+import com.example.models.interfaces.INode;
+
+public class Node implements INode {
 
     private int id;
     private int linkCount;

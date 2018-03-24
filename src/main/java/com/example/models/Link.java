@@ -1,6 +1,8 @@
 package com.example.models;
 
-public class Link {
+import com.example.models.interfaces.ILink;
+
+public class Link implements ILink{
 
     private int source;
     private int target;
