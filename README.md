@@ -67,4 +67,5 @@
     }
 ```
 
-[[https://github.com/MISO4204-201810/graph-example-design-patterns/blob/master/SPL%20de%20Gr%C3%A1fos.jpeg]]
+https://github.com/MISO4204-201810/graph-example-design-patterns/blob/master/SPL%20de%20Gr%C3%A1fos.jpeg
+
