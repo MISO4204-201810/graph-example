@@ -6,10 +6,17 @@ public class Node implements INode {
 
     private int id;
     private int linkCount;
+    private String description;
 
     public Node(int id) {
         this.id = id;
     }
+
+    public Node(int id, String description) {
+        this.id = id;
+        this.description = description;
+    }
+
 
     public int getId() {
         return id;
@@ -25,5 +32,13 @@ public class Node implements INode {
 
     public void setLinkCount(int linkCount) {
         this.linkCount = linkCount;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

@@ -24,28 +24,36 @@ public class UndirectedGraph implements IGraph {
         links.add(new Link(3, 4));
     }
 
-
-    @Override
-    public ArrayList<INode> getNodes() {
-        return this.nodes;
+    public void setType(GraphType type) {
+        this.type = type;
     }
 
-    @Override
+    public ArrayList<INode> getNodes() {
+        return nodes;
+    }
+
     public void setNodes(ArrayList<INode> nodes) {
         this.nodes = nodes;
     }
 
-    @Override
     public ArrayList<ILink> getLinks() {
-        return this.links;
+        return links;
     }
 
-    @Override
     public void setLinks(ArrayList<ILink> links) {
         this.links = links;
     }
 
     public GraphType getType() {
         return type;
+    }
+    @Override
+    public void addNode(INode node) {
+        this.nodes.add(node);
+    }
+
+    @Override
+    public void addLink(ILink link) {
+        this.links.add(link);
     }
 }
