@@ -36,11 +36,18 @@ public class Main {
         return "index";
     }
 
-    @RequestMapping(value = "/api/graph/{graphType}", method = RequestMethod.GET)
+    @RequestMapping(value = "/api/graph/{graphType}", method = RequestMethod.PUT)
     @ResponseBody
-    public IGraph getGraph(@PathVariable("graphType") GraphType graphType) {
+    public IGraph setTypeGraph(@PathVariable("graphType") GraphType graphType) {
         this._graphFactory = this.getGraphFactory(graphType);
         this.graph = _graphFactory.createGraph();
+        return this.graph;
+    }
+
+
+    @RequestMapping(value = "/api/graph", method = RequestMethod.GET)
+    @ResponseBody
+    public IGraph getGraph() {
         return this.graph;
     }
 

@@ -31,4 +31,28 @@ public class WeightedGraph implements IGraph {
     public void addLink(ILink link) {
         this.links.add(link);
     }
+
+    public GraphType getType() {
+        return type;
+    }
+
+    public void setType(GraphType type) {
+        this.type = type;
+    }
+
+    public ArrayList<INode> getNodes() {
+        return nodes;
+    }
+
+    public void setNodes(ArrayList<INode> nodes) {
+        this.nodes = nodes;
+    }
+
+    public ArrayList<ILink> getLinks() {
+        return links;
+    }
+
+    public void setLinks(ArrayList<ILink> links) {
+        this.links = links;
+    }
 }

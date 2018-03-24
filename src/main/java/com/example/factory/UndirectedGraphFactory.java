@@ -1,6 +1,8 @@
 package com.example.factory;
 
 import com.example.factory.interfaces.IGraphFactory;
+import com.example.models.Link;
+import com.example.models.Node;
 import com.example.models.UndirectedGraph;
 import com.example.models.interfaces.IGraph;
 import com.example.models.interfaces.ILink;
@@ -15,11 +17,13 @@ public class UndirectedGraphFactory implements IGraphFactory {
 
     @Override
     public INode createNode() {
-        return null;
+        INode node = new Node(2);
+        return node;
     }
 
     @Override
     public ILink createLink() {
-        return null;
+        ILink link = new Link(1, 2);
+        return link;
     }
 }
